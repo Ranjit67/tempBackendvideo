@@ -53,9 +53,7 @@ io.on("connection", (socket) => {
     if (data.accept) {
       // console.log(hostIdToRoom[data.hostId]);
       const roomID = hostIdToRoom[data.hostId];
-      const userInThisRoom = users[roomID].filter(
-        (id) => id !== data.requesterId
-      );
+      const userInThisRoom = users[roomID].filter((id) => id !== socket.id);
       //data.requesterId
       console.log(data.requesterId);
       io.to(data.requesterId).emit("permission granted", {
